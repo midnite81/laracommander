@@ -1,0 +1,24 @@
+{
+    "name": "midnite81/artisan-dashboard",
+    "description": "A package to make artisan commands available on a dashboard",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon Rogers",
+            "email": "webdev@centralblue.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Midnite81\\ArtisanDashboard\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Midnite81\\ArtisanDashboard\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}
