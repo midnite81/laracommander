@@ -12,9 +12,9 @@ class ConsoleController
      * ConsoleController constructor.
      * @param Kernel $artisan
      */
-    public function __construct(Kernel $artisan)
+    public function __construct()
     {
-        $this->artisan = app(config('artisan-dashboard.class', 'App\Console\Kernel::class'));
+        $this->artisan = app(config('artisan-dashboard.class', '\App\Console\Kernel::class'));
     }
     /**
      * Show all commands
@@ -25,7 +25,7 @@ class ConsoleController
     {
         $commands = $this->artisan->all();
         ksort($commands);
-        return view('', compact('commands'));
+        return view('artisan-dashboard::index', compact('commands'));
     }
     /**
      * View command
@@ -40,7 +40,7 @@ class ConsoleController
             && empty($commandClass->getDefinition()->getOptions())) {
             $request = $this->artisan->call($command);
             $response = $this->artisan->output();
-            return redirect()->route('artisan-dashboard::index')->with('console.result', $response)->with('console.name', $command);
+            return redirect()->route('midnite81.artisan.dashboard')->with('console.result', $response)->with('console.name', $command);
         }
         return view('artisan-dashboard::view', compact('command', 'commandClass'));
     }
@@ -63,7 +63,7 @@ class ConsoleController
         $args = $this->prepareArgumentsAndOptions($request);
         $this->artisan->call($command, $args);
         $response = $this->artisan->output();
-        return redirect()->route('artisan-dashboard::index')->with('console.result', $response)->with('console.name', $command);
+        return redirect()->route('midnite81.artisan.dashboard')->with('console.result', $response)->with('console.name', $command);
     }
     /**
      * Get command rules
