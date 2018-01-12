@@ -7,52 +7,72 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                @if(session('console.result'))
-                    <div class="alert alert-info alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Response from {{ session('console.name') }}:</strong><br>
-                        {{ trim(session('console.result')) }}
+                @if ($errors->all())
+                    <div class="alert alert-danger">
+                        <p>The following {{ str_plural('error', $errors->count()) }} occurred: </p>
+
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 @endif
 
-                <table class="table table-stripped">
-                    <thead>
-                    <tr>
-                        <th>Command</th>
-                        <th>Arguments</th>
-                        <th>Options</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tfoot>
-                    @foreach($commands as $commandName=>$command)
-                        @if(str_contains(get_class($command), ['App\\', 'Midnite81\\'])
-                            && ! property_exists($command, 'dontShow'))
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Prepare to run {{ $command }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {!! Form::open(array('route' => ['midnite81.artisan.execute', $command], 'class' => 'form form-inline')) !!}
+
+                        <table class="table table-striped" style="margin-bottom: 0;">
+                            <thead>
                             <tr>
-                                <td>
-                                    {{ $command->getName() }}
-                                    <em style="color: #adadad">{{ $command->getDescription() }}</em>
-                                </td>
-                                <td>
-                                    {{ count($command->getDefinition()->getArguments()) }}
-                                </td>
-                                <td>
-                                    {{ count($command->getDefinition()->getOptions()) }}
-                                </td>
-                                <td>
-                                    <a href="{{ route('midnite81.artisan.view', [$command->getName()]) }}"
-                                       class="btn  btn-xs @if(empty($command->getDefinition()->getArguments())
-                                   && empty($command->getDefinition()->getOptions())) btn-danger
-                                    @else btn-info @endif">Run {{ $command->getName() }}</a>
+                                <th style="width: 30%">Key</th>
+                                <th>Value</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($commandClass->getDefinition()->getArguments() as $key=>$argument)
+                                <tr>
+                                    <td>
+                                        {{ ucwords($key) }}
+                                        @if($argument->isRequired())*@endif
+                                    </td>
+                                    <td>
+                                        <input type="text" name="arguments[{{ $key }}]" id="arguments-{{ $key }}"
+                                               value="{{ $argument->getDefault() }}" style="width: 400px">
+                                        <label style="font-weight: normal; color: #b3b0b3"><input type="checkbox" name="arguments[{{ $key }}_null]" value="1"> <em>null</em></label>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            @foreach($commandClass->getDefinition()->getOptions() as $key=>$option)
+                                <tr>
+                                    <td>
+                                        {{ ucwords($key) }}
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="options[{{ $key }}]" value="{{ $key }}">
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="2" class="text-right">
+                                    <button type="reset" class="btn btn-default">Reset</button>
+                                    <button class="btn btn-info">Submit</button>
                                 </td>
                             </tr>
-                        @endif
-                    @endforeach
-                    </tfoot>
-                </table>
-
+                            </tfoot>
+                        </table>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
 @endsection
+
