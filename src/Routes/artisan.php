@@ -1,6 +1,8 @@
 <?php
 
-$router->prefix(config('artisan-dashboard.prefix', 'console'))
+
+
+Route::prefix(config('artisan-dashboard.prefix', 'console'))
     ->middleware(config('artisan-dashboard.middleware', ['web']))
     ->namespace('Midnite81\ArtisanDashboard\Controllers')
     ->group(function($router) {

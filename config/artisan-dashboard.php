@@ -5,7 +5,7 @@ return [
     /**
      * The kernel class
      */
-    'class' => App\Kernel\Console::class,
+    'class' => \App\Console\Kernel::class,
 
     /**
      * Prefix the routes

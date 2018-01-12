@@ -2,7 +2,9 @@
 
 namespace Midnite81\ArtisanDashboard;
 
-class CommandServiceProvider
+use Illuminate\Support\ServiceProvider;
+
+class CommandServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
