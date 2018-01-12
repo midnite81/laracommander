@@ -2,6 +2,9 @@
 
 namespace Midnite81\ArtisanDashboard\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Validation\Factory;
+
 class ConsoleController
 {
     /**
@@ -10,7 +13,6 @@ class ConsoleController
     protected $artisan;
     /**
      * ConsoleController constructor.
-     * @param Kernel $artisan
      */
     public function __construct()
     {
