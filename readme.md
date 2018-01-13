@@ -11,7 +11,14 @@ This package requires PHP 5.6+, and includes a Laravel 5 Service Provider.
 
 To install through composer include the package in your `composer.json`.
 
-    "midnite81/laracommander": "1.*"
+```json
+{
+    "require": {
+        "midnite81/laracommander": "1.*"
+    }
+}
+```
+
 
 Run `composer install` or `composer update` to download the dependencies or you can run `composer require midnite81/laracommander`.
 
@@ -23,12 +30,14 @@ will need to publish the config file.
 To use the package with Laravel 5 firstly add the LaraCommander service provider to the list of service providers 
 in `app/config/app.php`.
 
-    'providers' => [
-      ...
-      Midnite81\LaraCommander\CommandServiceProvider::class,
-      Collective\Html\HtmlServiceProvider::class,
-      ...       
-    ];
+```php
+'providers' => [
+    ...
+    Midnite81\LaraCommander\CommandServiceProvider::class,
+    Collective\Html\HtmlServiceProvider::class,
+    ...       
+];
+```
     
  ### Publish the config       
     
