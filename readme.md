@@ -39,3 +39,8 @@ If you're using Laravel 5.5 or above you can simply type `php artisan vendor:pub
 Once you have published the config files, you will find a `laracommander.php` file in the `config` folder. It is 
 important that you look through these settings and update these where necessary. By default LaraCommander isn't 
 set to use any auth middleware, which can be set in the config depending on your needs. 
+
+# Setup complete
+
+If you've followed the steps above you should now be able to load the LaraCommander Dashboard by going to 
+https://yoursite.com/console (or whatever url you're specified in the config).
