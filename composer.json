@@ -30,5 +30,12 @@
             "Midnite81\\LaraCommander\\Tests\\": "tests/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Midnite81\\LaraCommander\\CommandServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "stable"
 }
