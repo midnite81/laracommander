@@ -37,7 +37,7 @@
                 "Collective\\Html\\HtmlServiceProvider"
             ],
             "aliases" : {
-                "Form": "Collective\\Html\\FormFacade",
+                "Form": "Collective\\Html\\FormFacade"
             }
         }
     },
