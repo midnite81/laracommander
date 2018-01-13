@@ -82,6 +82,35 @@ return [
         // \App\Console\Commands\SomeClass::class
     ],
 
+     /*
+     |--------------------------------------------------------------------------
+     | Memory and runtime
+     |--------------------------------------------------------------------------
+     |
+     | When you run a command through the command line there are different expectations
+     | on run time and memory needed.
+     |
+     */
+
+     'runtime' => [
+         /**
+          * The amount of memory you want to provide the command
+          * When null it will take the default. It uses the ini_set method to set
+          * the memory limit and there are limits on that. You may need to consult your
+          * system administrator if in doubt.
+          */
+         'memory' => null, // example value '2048M'
+
+         /**
+          * The amount of time your command can uses before it times out.
+          * When null it will take the default, usually 30 seconds. You should specify
+          * the time in seconds. For example, 5 minutes is 300 seconds but can be specified either
+          * as 300 or 60 * 5. If you want to allow infinite runtime, set it to 0, but this can be
+          * risky on a web dashboard.
+          */
+         'timeout' => null, // example 60 * 5
+     ],
+
     /*
     |--------------------------------------------------------------------------
     | URL links

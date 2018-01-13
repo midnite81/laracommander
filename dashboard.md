@@ -23,6 +23,10 @@ enter the relevant information for that command.
 Simply fill in the information necessary to run the command and click 'Run Command'. LaraCommander comes with 
 validation so if something is required, you won't be able to run the command without providing the required information. 
 
+ When the command has been run, either by providing details on the input screen or by pushing the run button on a 
+ command which doesn't have arguments and options, a response alert box will be made available detailing any output
+ which you would normally see on the command line. 
  
-  
-
+ ![Response](https://raw.githubusercontent.com/midnite81/laracommander/master/_assets/response_from_greeting.png)
+ 
+ 

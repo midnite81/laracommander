@@ -18,6 +18,12 @@ class ConsoleController
     public function __construct()
     {
         $this->artisan = app(config('laracommander.class', '\App\Console\Kernel::class'));
+        if (! empty(config('laracommander.runtime.memory'))) {
+            ini_set('memory_limit', config('laracommander.runtime.memory'));
+        }
+        if (! is_null(config('laracommander.runtime.timeout'))) {
+            ini_set('memory_limit', config('laracommander.runtime.timeout'));
+        }
     }
 
     /**
