@@ -13,9 +13,9 @@ To install through composer include the package in your `composer.json`.
 
 ```json
 {
-	"require": {
-		"midnite81/laracommander": "1.*"
-	}
+    "require": {
+        "midnite81/laracommander": "1.*"
+    }
 }
 ```
 
