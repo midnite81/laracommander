@@ -32,7 +32,13 @@ class CommandServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadRoutesFrom(__DIR__ . '/Routes/artisan.php');
+        if (method_exists($this, 'loadRoutesFrom')) {
+            $this->loadRoutesFrom(__DIR__ . '/Routes/artisan.php');
+        } else {
+            if (! $this->app->routesAreCached()) {
+                require __DIR__ . '/Routes/artisan.php';
+            }
+        }
         $this->loadViewsFrom(__DIR__ . '/Views', 'laracommander');
     }
     /**
