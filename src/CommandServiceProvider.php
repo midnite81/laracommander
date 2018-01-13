@@ -1,6 +1,6 @@
 <?php
 
-namespace Midnite81\ArtisanDashboard;
+namespace Midnite81\LaraCommander;
 
 use Illuminate\Support\ServiceProvider;
 

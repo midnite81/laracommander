@@ -4,7 +4,7 @@
 
 Route::prefix(config('laracommander.prefix', 'console'))
     ->middleware(config('laracommander.middleware', ['web']))
-    ->namespace('Midnite81\ArtisanDashboard\Controllers')
+    ->namespace('Midnite81\LaraCommander\Controllers')
     ->group(function($router) {
 
         $router->get('/', 'ConsoleController@index')->name('midnite81.artisan.dashboard');
