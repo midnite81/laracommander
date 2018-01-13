@@ -43,4 +43,4 @@ set to use any auth middleware, which can be set in the config depending on your
 # Setup complete
 
 If you've followed the steps above you should now be able to load the LaraCommander Dashboard by going to 
-https://yoursite.com/console (or whatever url you're specified in the config).
+https://example.com/console (or whatever url you're specified in the config).
