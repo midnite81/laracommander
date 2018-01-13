@@ -71,5 +71,15 @@ return [
             'route' => null,
             'url'   => null,
         ],
+    ],
+
+    /**
+     * You can override the default views if you wish to.
+     * Please bear in mind that the inner content has bootstrap styling.
+     */
+    'views' => [
+        'index' => null, // you will need to include laracommander::data.index in this view
+
+        'view' => null, // you will need to include laracommander::data.view in this view
     ]
 ];

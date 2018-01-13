@@ -21,6 +21,7 @@
                 </tr>
                 </thead>
                 <tfoot>
+                @if(! empty($commands))
                 @foreach($commands as $commandName=>$command)
                         <tr>
                             <td>
@@ -45,6 +46,11 @@
                             </td>
                         </tr>
                 @endforeach
+                    @else
+                    <tr>
+                        <td colspan="4">No commands are available</td>
+                    </tr>
+                    @endif
                 </tfoot>
             </table>
 

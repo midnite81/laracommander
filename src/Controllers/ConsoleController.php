@@ -30,7 +30,7 @@ class ConsoleController
         $commands = $this->getCommands();
 
         ksort($commands);
-        return view('laracommander::index', compact('commands'));
+        return view($this->getView('index'), compact('commands'));
     }
 
     /**
@@ -41,7 +41,7 @@ class ConsoleController
      */
     public function view($command)
     {
-        $commandClass = $this->getCommands()[$command];
+        $commandClass = isset($this->getCommands()[$command]) ? $this->getCommands()[$command] : null;
 
         if (empty($commandClass)) {
             abort(404);
@@ -54,7 +54,7 @@ class ConsoleController
             return redirect()->route('midnite81.artisan.dashboard')->with('console.result', $response)
                              ->with('console.name', $command);
         }
-        return view('laracommander::view', compact('command', 'commandClass'));
+        return view($this->getView('view'), compact('command', 'commandClass'));
     }
 
     /**
@@ -143,6 +143,20 @@ class ConsoleController
             return $this->classHasNoDontShowProperty($class);
         });
         return $commands;
+    }
+
+    /**
+     * Get index view name
+     *
+     * @return string
+     */
+    protected function getView($page)
+    {
+        if (! empty(config('laracommander.views.' . $page))) {
+            return config('laracommander.views.' . $page);
+        }
+
+        return 'laracommander::' . $page;
     }
 
     /**
