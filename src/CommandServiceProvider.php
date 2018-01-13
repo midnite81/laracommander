@@ -24,15 +24,7 @@ class CommandServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/laracommander.php' => config_path('laracommander.php')
         ]);
-        $this->mergeConfigFrom(__DIR__ . '/../config/laracommander.php', 'laracommander');
-    }
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
+
         if (method_exists($this, 'loadRoutesFrom')) {
             $this->loadRoutesFrom(__DIR__ . '/Routes/artisan.php');
         } else {
@@ -41,6 +33,15 @@ class CommandServiceProvider extends ServiceProvider
             }
         }
         $this->loadViewsFrom(__DIR__ . '/Views', 'laracommander');
+    }
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/laracommander.php', 'laracommander');
     }
     /**
      * Get the services provided by the provider.
