@@ -3,7 +3,7 @@
 
 _A web dashboard for Artisan Commands_
 
-Once you've installed LaraCommander, you may wish to view the guide to [How the Dashboard works](https://github.com/midnite81/laracommander/blob/master/dashboard.md)
+Once you've installed LaraCommander, you may wish to view the guide to [How the Dashboard works](dashboard.md)
 
 # Installation
 
