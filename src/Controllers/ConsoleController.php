@@ -22,7 +22,7 @@ class ConsoleController
             ini_set('memory_limit', config('laracommander.runtime.memory'));
         }
         if (! is_null(config('laracommander.runtime.timeout'))) {
-            ini_set('memory_limit', config('laracommander.runtime.timeout'));
+            set_time_limit(config('laracommander.runtime.timeout'));
         }
     }
 
