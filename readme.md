@@ -1,4 +1,4 @@
-# LaraCommander - Artisan Web Dashboard
+# LaraCommander - Artisan Web Dashboard [![Latest Stable Version](https://poser.pugx.org/midnite81/laracommander/version)](https://packagist.org/packages/midnite81/laracommander) [![Total Downloads](https://poser.pugx.org/midnite81/laracommander/downloads)](https://packagist.org/packages/midnite81/laracommander) [![Latest Unstable Version](https://poser.pugx.org/midnite81/laracommander/v/unstable)](https://packagist.org/packages/midnite81/laracommander) [![License](https://poser.pugx.org/midnite81/laracommander/license.svg)](https://packagist.org/packages/midnite81/laracommander)
 _A web dashboard for Artisan Commands_
 
 # Installation
