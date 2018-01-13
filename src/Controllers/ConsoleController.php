@@ -2,10 +2,11 @@
 
 namespace Midnite81\LaraCommander\Controllers;
 
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Factory;
 
-class ConsoleController
+class ConsoleController extends Controller
 {
     /**
      * @var Kernel
