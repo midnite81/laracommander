@@ -9,6 +9,9 @@
     <title>@yield('title', 'Console Dashboard')</title>
 </head>
 <body>
+
+@include('laracommander::layouts.nav')
+
 @yield('content')
 </body>
 </html>

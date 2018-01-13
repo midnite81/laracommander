@@ -11,6 +11,7 @@ class ConsoleController
      * @var Kernel
      */
     protected $artisan;
+
     /**
      * ConsoleController constructor.
      */
@@ -18,6 +19,7 @@ class ConsoleController
     {
         $this->artisan = app(config('laracommander.class', '\App\Console\Kernel::class'));
     }
+
     /**
      * Show all commands
      *
@@ -25,10 +27,12 @@ class ConsoleController
      */
     public function index()
     {
-        $commands = $this->artisan->all();
+        $commands = $this->getCommands();
+
         ksort($commands);
         return view('laracommander::index', compact('commands'));
     }
+
     /**
      * View command
      *
@@ -37,7 +41,7 @@ class ConsoleController
      */
     public function view($command)
     {
-        $commandClass = $this->artisan->all()[$command];
+        $commandClass = $this->getCommands()[$command];
 
         if (empty($commandClass)) {
             abort(404);
@@ -47,10 +51,12 @@ class ConsoleController
             && empty($commandClass->getDefinition()->getOptions())) {
             $request = $this->artisan->call($command);
             $response = $this->artisan->output();
-            return redirect()->route('midnite81.artisan.dashboard')->with('console.result', $response)->with('console.name', $command);
+            return redirect()->route('midnite81.artisan.dashboard')->with('console.result', $response)
+                             ->with('console.name', $command);
         }
         return view('laracommander::view', compact('command', 'commandClass'));
     }
+
     /**
      * @param Request $request
      * @param Factory|Validator $validator
@@ -61,7 +67,7 @@ class ConsoleController
     {
         $commandClass = $this->artisan->all()[$command];
         $rules = $this->getCommandRules($commandClass);
-        if (! empty($rules)) {
+        if ( ! empty($rules)) {
             $validate = $validator->make($request->all(), $rules);
             if ($validate->fails()) {
                 return redirect()->back()->withErrors($validate)->withInput();
@@ -70,8 +76,10 @@ class ConsoleController
         $args = $this->prepareArgumentsAndOptions($request);
         $this->artisan->call($command, $args);
         $response = $this->artisan->output();
-        return redirect()->route('midnite81.artisan.dashboard')->with('console.result', $response)->with('console.name', $command);
+        return redirect()->route('midnite81.artisan.dashboard')->with('console.result', $response)
+                         ->with('console.name', $command);
     }
+
     /**
      * Get command rules
      *
@@ -84,12 +92,13 @@ class ConsoleController
         if ( ! empty($args = $commandClass->getDefinition()->getArguments())) {
             foreach ($args as $key => $arg) {
                 if ($arg->isRequired()) {
-                    $rules['arguments.'.$key] = 'required|min:1';
+                    $rules['arguments.' . $key] = 'required|min:1';
                 }
             }
         }
         return $rules;
     }
+
     /**
      * Prepare the arguments and options for command
      * @param $data
@@ -99,17 +108,84 @@ class ConsoleController
     {
         $output = [];
         if ($data->has('arguments')) {
-            foreach($data->get('arguments') as $key=>$arg) {
+            foreach ($data->get('arguments') as $key => $arg) {
                 $field = str_replace('_null', '', $key);
                 $output[$field] = str_contains($key, '_null') ? null : $arg;
             }
         }
         if ($data->has('options')) {
-            foreach($data->get('options') as $key=>$arg) {
-                $opt = '--'.$key;
+            foreach ($data->get('options') as $key => $arg) {
+                $opt = '--' . $key;
                 $output[$opt] = $opt;
             }
         }
         return $output;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getCommands()
+    {
+        $commands = array_filter($this->artisan->all(), function ($class) {
+
+            if ($this->classIsShowable($class)) {
+                return true;
+            }
+
+            if ($this->classIsHidden($class)) {
+                return false;
+            }
+
+            if ( ! empty(config('laracommander.accepted-namespaces'))) {
+                return $this->inAcceptedNamespace($class) && $this->classHasNoDontShowProperty($class);
+            }
+            return $this->classHasNoDontShowProperty($class);
+        });
+        return $commands;
+    }
+
+    /**
+     * Checks if class is showable
+     *
+     * @param $class
+     * @return bool
+     */
+    protected function classIsShowable($class)
+    {
+        return in_array(get_class($class), config('laracommander.showable'));
+    }
+
+    /**
+     * Checks if class is hidden
+     *
+     * @param $class
+     * @return bool
+     */
+    protected function classIsHidden($class)
+    {
+        return in_array(get_class($class), config('laracommander.hidden'));
+    }
+
+    /**
+     * Checks if class is in an accepted namespace
+     *
+     * @param $class
+     * @return bool
+     */
+    protected function inAcceptedNamespace($class)
+    {
+        return str_contains(get_class($class), config('laracommander.accepted-namespaces'));
+    }
+
+    /**
+     * Checks if class has dontShow set
+     *
+     * @param $class
+     * @return bool
+     */
+    protected function classHasNoDontShowProperty($class)
+    {
+        return ! property_exists($class, 'dontShow');
     }
 }
