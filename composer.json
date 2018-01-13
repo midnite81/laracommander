@@ -33,8 +33,12 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Midnite81\\LaraCommander\\CommandServiceProvider"
-            ]
+                "Midnite81\\LaraCommander\\CommandServiceProvider",
+                "Collective\\Html\\HtmlServiceProvider"
+            ],
+            "aliases" : {
+                "Form": "Collective\\Html\\FormFacade",
+            }
         }
     },
     "minimum-stability": "stable"
