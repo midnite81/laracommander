@@ -5,7 +5,7 @@
                     aria-expanded="false" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
             <a href="{{ route('midnite81.artisan.dashboard') }}" class="navbar-brand">
-                <div class="brand-title">LaraController</div>
+                <div class="brand-title">LaraCommander</div>
             </a></div>
         <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
 
