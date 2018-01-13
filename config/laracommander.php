@@ -128,7 +128,7 @@ return [
         // Link to your main admin panel
         'admin' => [
             'route' => null, // e.g. 'route' => 'admin.index'
-            'url'   => null, // e.g. 'url' => '/admin's
+            'url'   => null, // e.g. 'url' => '/admin'
         ],
 
         // Link to your main website
