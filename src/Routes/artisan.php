@@ -2,8 +2,8 @@
 
 
 
-Route::prefix(config('artisan-dashboard.prefix', 'console'))
-    ->middleware(config('artisan-dashboard.middleware', ['web']))
+Route::prefix(config('laracommander.prefix', 'console'))
+    ->middleware(config('laracommander.middleware', ['web']))
     ->namespace('Midnite81\ArtisanDashboard\Controllers')
     ->group(function($router) {
 

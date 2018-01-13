@@ -21,9 +21,9 @@ class CommandServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/artisan-dashboard.php' => config_path('artisan-dashboard.php')
+            __DIR__ . '/../config/laracommander.php' => config_path('laracommander.php')
         ]);
-        $this->mergeConfigFrom(__DIR__ . '/../config/artisan-dashboard.php', 'artisan-dashboard');
+        $this->mergeConfigFrom(__DIR__ . '/../config/laracommander.php', 'laracommander');
     }
     /**
      * Register the service provider.
@@ -33,7 +33,7 @@ class CommandServiceProvider extends ServiceProvider
     public function register()
     {
         $this->loadRoutesFrom(__DIR__ . '/Routes/artisan.php');
-        $this->loadViewsFrom(__DIR__ . '/Views', 'artisan-dashboard');
+        $this->loadViewsFrom(__DIR__ . '/Views', 'laracommander');
     }
     /**
      * Get the services provided by the provider.

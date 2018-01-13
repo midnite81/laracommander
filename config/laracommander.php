@@ -16,4 +16,6 @@ return [
      * Middleware to apply to the routes
      */
     'middleware' => ['web'],
+
+
 ];

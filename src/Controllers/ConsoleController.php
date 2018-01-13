@@ -1,6 +1,6 @@
 <?php
 
-namespace Midnite81\ArtisanDashboard\Controllers;
+namespace Midnite81\LaraCommander\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Factory;
@@ -16,7 +16,7 @@ class ConsoleController
      */
     public function __construct()
     {
-        $this->artisan = app(config('artisan-dashboard.class', '\App\Console\Kernel::class'));
+        $this->artisan = app(config('laracommander.class', '\App\Console\Kernel::class'));
     }
     /**
      * Show all commands
@@ -27,7 +27,7 @@ class ConsoleController
     {
         $commands = $this->artisan->all();
         ksort($commands);
-        return view('artisan-dashboard::index', compact('commands'));
+        return view('laracommander::index', compact('commands'));
     }
     /**
      * View command
@@ -38,13 +38,18 @@ class ConsoleController
     public function view($command)
     {
         $commandClass = $this->artisan->all()[$command];
+
+        if (empty($commandClass)) {
+            abort(404);
+        }
+
         if (empty($commandClass->getDefinition()->getArguments())
             && empty($commandClass->getDefinition()->getOptions())) {
             $request = $this->artisan->call($command);
             $response = $this->artisan->output();
             return redirect()->route('midnite81.artisan.dashboard')->with('console.result', $response)->with('console.name', $command);
         }
-        return view('artisan-dashboard::view', compact('command', 'commandClass'));
+        return view('laracommander::view', compact('command', 'commandClass'));
     }
     /**
      * @param Request $request

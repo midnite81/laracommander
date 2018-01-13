@@ -1,4 +1,4 @@
-@extends('artisan-dashboard::layouts.main')
+@extends('laracommander::layouts.main')
 
 @section('title', 'Console')
 

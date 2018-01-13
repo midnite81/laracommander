@@ -1,5 +1,5 @@
 {
-    "name": "midnite81/artisan-dashboard",
+    "name": "midnite81/laracommander",
     "description": "A package to make artisan commands available on a dashboard",
     "type": "package",
     "license": "MIT",
@@ -10,9 +10,9 @@
         }
     ],
     "require" : {
-        "php": ">=7.0.0",
-        "laravel/framework": "5.5.*",
-        "laravelcollective/html": "5.5.*"
+        "php": ">=5.6",
+        "laravel/framework": "5.*",
+        "laravelcollective/html": "5.*"
     },
     "require-dev" : {
         "mockery/mockery": "~1.0",
@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Midnite81\\ArtisanDashboard\\": "src/"
+            "Midnite81\\LaraCommander\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Midnite81\\ArtisanDashboard\\Tests\\": "tests/"
+            "Midnite81\\LaraCommander\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable"
