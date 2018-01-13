@@ -38,6 +38,17 @@ in `app/config/app.php`.
     ...       
 ];
 ```
+
+Add in the facades to the aliases section of `app/config/app.php`.
+
+```php
+'aliases' => [
+    ...
+    'Form' => Collective\Html\FormFacade::class,
+    'Html' => Collective\Html\HtmlFacade::class,
+    ...       
+];
+```
     
  ### Publish the config       
     

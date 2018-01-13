@@ -2,6 +2,7 @@
 
 namespace Midnite81\LaraCommander;
 
+use Collective\Html\HtmlServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class CommandServiceProvider extends ServiceProvider
