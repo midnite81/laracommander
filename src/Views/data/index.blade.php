@@ -5,7 +5,7 @@
                 <div class="alert alert-info alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Response from {{ session('console.name') }}:</strong><br>
-                    <div style="font-family: Consolas, Menlo,Monaco,'Courier New',monospace; font-size: 12px">
+                    <div style="font-family: Consolas, Menlo,Monaco,'Courier New',monospace; font-size: 12px; word-wrap: break-word;">
                         {!! nl2br(trim(session('console.result'))) !!}
                     </div>
                 </div>
