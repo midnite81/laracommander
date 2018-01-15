@@ -82,6 +82,17 @@ return [
         // \App\Console\Commands\SomeClass::class
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Auto-complete
+    |--------------------------------------------------------------------------
+    |
+    | If you don't want fields to autocomplete set the following property to false.
+    |
+    */
+
+    'autocomplete' => true,
+
      /*
      |--------------------------------------------------------------------------
      | Memory and runtime

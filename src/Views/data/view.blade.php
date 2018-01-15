@@ -47,7 +47,11 @@
                                     {{ ucwords($key) }}
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="options[{{ $key }}]" value="{{ $key }}">
+                                    <input type="checkbox"
+                                           name="options[{{ $key }}]"
+                                           value="{{ $key }}"
+                                           @if (! config('laracommander.autocomplete', true)) autocomplete="off" @endif
+                                    >
                                 </td>
                             </tr>
                         @endforeach
