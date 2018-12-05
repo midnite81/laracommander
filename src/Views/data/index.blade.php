@@ -26,7 +26,7 @@
                         <tr>
                             <td>
                                 <span title="{{ get_class($command) }}">{{ $command->getName() }}</span>
-                                <em style="color: #adadad">{{ $command->getDescription() }}</em>
+                                <em style="color: #adadad">{{ strip_tags($command->getDescription()) }}</em>
                             </td>
                             <td>
                                 {{ count($command->getDefinition()->getArguments()) }}
